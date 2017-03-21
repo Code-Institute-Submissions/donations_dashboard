@@ -1,0 +1,125 @@
+Your App
+	1. requirements.txt
+	2. Procfile
+	3. DB Connection
+	4. Environment Variables
+	5. Github
+
+
+Heroku
+	1. Database
+	2. Config Vars (Environment Variables)
+	3. Deploy (Github)
+
+AWS
+	1. S3 Buckets
+	2. IAM (Security)
+
+------------------------------------------------------------------------
+
+1. Get Mongo Database Running Locally
+
+	1.a Go to your mongodata folder, or whatever you called it.
+		This is the folder that contains config, logs, and db
+
+		Probably
+			Documents/mongo_data
+
+	1.b Run mongod
+		 
+		mongod --config config/mongoConfig.conf
+
+
+	1.c Import Data Locally (make sure mongod is running, see above)
+
+		mongoimport -d donorsUSA -c projects --type csv --file opendata_projects_clean.csv --headerline
+
+
+
+2. Get Data into Mongo Database on Heroku (mLab)
+
+		mongoimport -h <hostname> -d <dbname> -c projects -u <user> -p <password> --file opendata_projects_clean.csv --type csv --headerline
+
+	Use the following format to extract the info you need from the MONGODB_URI
+		mongodb://username:password@hostname/dbname
+
+
+
+
+
+3. Modify App to Connect to mLab Mongo instead of local
+
+	3.a Set vars from Environmental Variables instead of hard coding.
+
+		MONGODB_URI = os.getenv('MONGODB_URI')
+		DBS_NAME = os.getenv('MONGO_DB_NAME','donorsUSA')
+		COLLECTION_NAME = os.getenv('MONGO_COLLECTION_NAME','projects')
+
+	3.b Comment out the existing MONGO_HOST and MONGO_PORT variables
+
+	3.c In the donor_projects function, comment out the existing line for
+		creating a connection and replace it as follows, so that we now use
+		MONGODB_URI, instead of HOST and PORT
+
+	    # connection = MongoClient(MONGO_HOST, MONGO_PORT)
+    	connection = MongoClient(MONGODB_URI)
+
+    3.d Create Environment variables in Pycharm for 
+    	MONGODB_URI, MONGO_DB_NAME, MONGO_COLLECTION_NAME
+
+    	Set their values based on the mLab mongo database. 
+    	E.g. take MONGODB_URI directly from Heroku config vars
+
+    3.e Run your app, it should take longer to load (the data is coming over
+    	the internet), but if the dashboard loads, your code is correct for
+    	working with your mLab instance of Mongo.
+
+4. Get Project Ready to run on Heroku
+
+	4.a Create Procfile(s)
+
+		On Mac:
+			One file called Procfile (Upper case P, no file extension)
+
+			web: gunicorn donations:app
+
+			donations above is the name of the .py file that we want to run,
+			it may be different for your project.
+
+		On Windows:
+			Same as above but with an additional Windows Procfile, see
+			Notes in LMS.
+
+
+
+	4.b pip install gunicorn
+
+
+	4.c pip freeze > requirements.txt
+
+
+5. Adding the Dashboard to git 
+
+	5.a git init
+
+	5.b echo .idea >> .gitignore
+
+	5.c git add .
+
+	5.d git commit -m "Initial Commit"
+
+	5.e Create Repo on github
+
+	5.f git remote add (get the command from the github repo)
+
+6.	Deploy to Heroku
+
+	6.a Log into Heroku and go to the deploy section of the app
+
+	6.b Click on github
+
+	6.c Search for and connect to the correct repo
+
+	6.d Enable Automatic Deploy
+
+	6.e Deploy Branch
