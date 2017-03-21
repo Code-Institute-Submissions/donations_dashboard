@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # <<<<      DATABASE SETTINGS FOR RUNNING ON HEROKU  >>>>>>>>>>>>>
 
-MONGODB_URI=os.getenv('MONGO_URI')
+MONGODB_URI=os.getenv('MONGODB_URI')
 DB_NAME=os.getenv('MONGO_DB_NAME','donorsUSA')
 COLLECTION_NAME=os.getenv('MONGO_COLLECTION_NAME', 'projects')
 
