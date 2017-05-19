@@ -31,7 +31,7 @@ Since this dashboard uses a very big dataset , it could take some time to load t
 
 **Framework and Library :**
 * **Bootstrap:** CSS framework
-* **Jquery:** JavaScript libarary
+* **Jquery:** JavaScript library
 * **D3.js:** A JavaScript based visualization engine, which will render interactive charts and graphs based on the data.
 * **Dc.js:** A JavaScript based wrapper library for D3.js, which makes plotting the charts a lot easier.
 * **Crossfilter.js:** A JavaScript based data manipulation library that enables two way data binding.
@@ -43,14 +43,6 @@ Since this dashboard uses a very big dataset , it could take some time to load t
 **Language :** Python
 
 **Framework : Flask**- A Python based  micro – framework  used to serve our data from the server to our web based interface.
-
-**Packages :** 
-* **hsaudiotag** - to process the meda data of audio files
-* **django-cleanup** - for automatic cleanup of FileField and ImageField
-* **django-gravatar2** 
-* **Pillow** , and some more..
-
-
 
 ## Storage
 
