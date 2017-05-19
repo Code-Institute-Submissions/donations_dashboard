@@ -21,5 +21,41 @@ All the stats will change depending on the state selected by the user.
 
 ## Please Note
 
-Since this dashboard uses a very big dataset , it could take some time to load the data first time therefore rendering of graphs could take
-a little bit of time.
+Since this dashboard uses a very big dataset , it could take some time to load the data first time therefore rendering of graphs could take a little bit of time.
+
+# Tecknologies used
+
+## Client Side
+
+**languages :** HTML, CSS, JavaScript
+
+**Framework and Library :**
+* **Bootstrap:** CSS framework
+* **Jquery:** JavaScript libarary
+* **D3.js:** A JavaScript based visualization engine, which will render interactive charts and graphs based on the data.
+* **Dc.js:** A JavaScript based wrapper library for D3.js, which makes plotting the charts a lot easier.
+* **Crossfilter.js:** A JavaScript based data manipulation library that enables two way data binding.
+* **Queue.js:** An asynchronous helper library for JavaScript.
+* **Intro.js:** A JavaScript library to help user using the dashboard.
+
+## Server Side 
+
+**Language :** Python
+
+**Framework : Flask**- A Python based  micro – framework  used to serve our data from the server to our web based interface.
+
+**Packages :** 
+* **hsaudiotag** - to process the meda data of audio files
+* **django-cleanup** - for automatic cleanup of FileField and ImageField
+* **django-gravatar2** 
+* **Pillow** , and some more..
+
+
+
+## Storage
+
+**Database : Mongo DB**- NoSQL Database used to convert and present  data in JSON format.
+
+**Hosting :** Heroku
+
+
